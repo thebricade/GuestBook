@@ -28,6 +28,13 @@ public class GuestbookSave : MonoBehaviour
     public void ReadTextFile(string filePath, string fileName)
     {
          var fileLoad = new StreamReader(Application.dataPath + filePath + "/" + fileName);
+         var fileText = fileLoad.ReadToEnd(); 
+         
+         //update guestbook text
+         guestbookText.text = fileText; 
+         
+         Debug.Log(fileLoad.ReadToEnd());
+         fileLoad.Close();
     }
     
     
