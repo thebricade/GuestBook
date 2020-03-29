@@ -37,5 +37,17 @@ public class GuestbookSave : MonoBehaviour
          fileLoad.Close();
     }
     
+    //this is just attaching it to the button (I know this is dirty buuuut i'm mainly trying to figure out saving) '
+    public void SignBook()
+    {
+          
+    }
+    
+    //function for saving text to SaveGuest.txt 
+    public void SaveTextFile(string fileName, string data)
+    {
+        
+    }
+    
     
 }
