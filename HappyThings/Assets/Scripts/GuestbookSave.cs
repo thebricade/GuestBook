@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -6,8 +7,43 @@ using UnityEngine;
 
 public class GuestbookSave : MonoBehaviour
 {
-    public TextMeshProUGUI guestbookText;
+    public class Page
+    {
+        public int pageNumber;
+        public string pageContent;
+
+        public Page()
+        {
+            
+        }
+
+        public Page(int page, string content)
+        {
+            this.pageNumber = page;
+            this.pageContent = content; 
+        }
+    }
     
+    
+    
+    
+    public TextMeshProUGUI guestbookText;
+    private Page currentPage;
+    private int pagesLoaded;
+
+    private List<StreamReader> allSavedFiles;
+
+    private void Awake()
+    { 
+        //should probably run something to double check if there is a blank page but lets add that later
+        currentPage = new Page();
+        CheckAmountOfPages();
+        
+       // currentPage.pageNumber = pagesLoaded; 
+
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +58,15 @@ public class GuestbookSave : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+    public void CheckAmountOfPages()
+    {
+        string[] filePaths = Directory.GetFiles(Application.dataPath + "/", "*.txt");
+        Debug.Log(filePaths.Length);
+      //  filePaths.Length = pagesLoaded; 
+
     }
     
     //function for reading text from the SaveGuest.txt 
