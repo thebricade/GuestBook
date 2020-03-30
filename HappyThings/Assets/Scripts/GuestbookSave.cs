@@ -40,13 +40,17 @@ public class GuestbookSave : MonoBehaviour
     //this is just attaching it to the button (I know this is dirty buuuut i'm mainly trying to figure out saving) '
     public void SignBook()
     {
-          
+        var currentText = guestbookText.text;
+        SaveTextFile("SaveGuest.txt", currentText);   
     }
     
     //function for saving text to SaveGuest.txt 
     public void SaveTextFile(string fileName, string data)
     {
-        
+        using (var outputFile = new StreamWriter(Path.Combine(Application.dataPath, fileName)))
+        {
+            outputFile.Write(data);
+        }
     }
     
     
