@@ -29,8 +29,9 @@ public class GuestbookSave : MonoBehaviour
     
     public TextMeshProUGUI guestbookText;
     private Page currentPage;
-    private int pagesLoaded;
-
+   // private int pagesLoaded;
+    private string[] pagesLoaded; 
+    
     private List<StreamReader> allSavedFiles;
 
     private void Awake()
@@ -39,7 +40,8 @@ public class GuestbookSave : MonoBehaviour
         currentPage = new Page();
         CheckAmountOfPages();
         
-       // currentPage.pageNumber = pagesLoaded; 
+        currentPage.pageNumber = pagesLoaded.Length +1; 
+        Debug.Log("current page number is "+currentPage.pageNumber);
 
     }
 
@@ -63,10 +65,8 @@ public class GuestbookSave : MonoBehaviour
 
     public void CheckAmountOfPages()
     {
-        string[] filePaths = Directory.GetFiles(Application.dataPath + "/", "*.txt");
-        Debug.Log(filePaths.Length);
-      //  filePaths.Length = pagesLoaded; 
-
+        pagesLoaded = Directory.GetFiles(Application.dataPath + "/", "*.txt");
+        Debug.Log(pagesLoaded.Length);
     }
     
     //function for reading text from the SaveGuest.txt 
